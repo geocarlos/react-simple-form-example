@@ -1,4 +1,4 @@
-import {formErrors} from '../../simple-redux-form-checker';
+import {formErrors} from 'simple-redux-form-checker';
 import {NEW_FRIEND, EDIT_FRIEND, DELETE_FRIEND} from '../actions';
 import {combineReducers} from 'redux';
 
@@ -6,7 +6,7 @@ function friends(state = [], action){
   const newState = Object.assign([], state);
   switch (action.type) {
     case NEW_FRIEND:
-      retun [
+      return [
         ...state, action.friend
       ];
     case EDIT_FRIEND:
