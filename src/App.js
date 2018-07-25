@@ -29,7 +29,7 @@ class App extends Component {
     }
     return (
       <div className="App">
-        <h1>Hello World</h1>
+        <h1>Simple Redux Form Example</h1>
         <form onSubmit={this.handleSubmit.bind(this)}>
           <h2>Add Friend</h2>
           <div>
