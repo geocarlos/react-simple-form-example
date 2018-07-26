@@ -21,6 +21,18 @@ class App extends Component {
     .catch((errors)=>this.props.dispatch(checkFormErrors(errors)))
   }
 
+  checkOnType(inputField){
+    console.log(this.refs[inputField].value)
+    validateForm(this.refs[inputField].value)
+    .then(()=> {
+      console.log("Validated");
+      if(this.props.errors[inputField]){
+        this.props.dispatch(checkFormErrors({...this.props.errors, [inputField]: ''}))
+      }
+    })
+    .catch((errors)=>this.props.dispatch(checkFormErrors(errors)))
+  }
+
   render() {
     const {errors} = this.props;
     const style = {
@@ -29,26 +41,26 @@ class App extends Component {
     }
     return (
       <div className="App">
-        <h1>Hello World</h1>
+        <h1>Simple Redux Form Example</h1>
         <form onSubmit={this.handleSubmit.bind(this)}>
           <h2>Add Friend</h2>
           <div>
             <label>Name: </label>
-            <input ref='name' type='text' />
+            <input ref='name' type='text' onKeyUp={this.checkOnType.bind(this, 'name')} />
             <div style={style}>
               {errors['name'] && errors['name']}
             </div>
           </div>
           <div>
             <label>E-mail: </label>
-            <input ref='email' type='text' />
+            <input ref='email' type='text' onKeyUp={this.checkOnType.bind(this, 'email')} />
             <div style={style}>
               {errors['email'] && errors['email']}
             </div>
           </div>
           <div>
             <label>Phone: </label>
-            <input ref='phone' type='text' />
+            <input ref='phone' type='text' onKeyUp={this.checkOnType.bind(this, 'phone')} />
             <div style={style}>
               {errors['phone'] && errors['phone']}
             </div>
